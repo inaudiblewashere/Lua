@@ -835,7 +835,7 @@ function Library:CreateWindow(Version, PrimaryColor, SecondaryColor)
             UIListLayout.Padding = UDim.new(0, 5)
 
             if List ~= nil then
-                for v in next, List do
+                for i,v in next, List do
                     BoolList[v] = false
                     local Chip = Instance.new("TextButton")
                     local ButtonCorner = Instance.new("UICorner")
@@ -880,12 +880,7 @@ function Library:CreateWindow(Version, PrimaryColor, SecondaryColor)
                     expand = expand + 35
                     Chipset.Size = UDim2.new(0, 317, 0, expand)
                     
-                    local toggle = v
-
-                    if toggle then
-                        Dot.Position = UDim2.new(0.594594598, 0, -0.333333343, 0)
-                        Dot.BackgroundColor3 = SecondaryColor
-                    end
+                    local toggle = false
 
                     Chip.MouseButton1Click:Connect(function()
                         toggle = not toggle
