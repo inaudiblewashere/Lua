@@ -356,7 +356,6 @@ function Library:CreateWindow(Version, PrimaryColor, SecondaryColor)
         function ElementHandler.Toggle(ToggleOptions)
             local Title = ToggleOptions.Title or "This is a Toggle"
             local Callback = ToggleOptions.Callback or function() end
-            local Enabled = ToggleOptions.Enable or false
             local Toggle = Instance.new("TextButton")
             local ButtonCorner = Instance.new("UICorner")
             local UIPadding = Instance.new("UIPadding")
@@ -398,7 +397,7 @@ function Library:CreateWindow(Version, PrimaryColor, SecondaryColor)
             DotCorner.CornerRadius = UDim.new(0, 50)
             DotCorner.Parent = Dot
             
-            local toggle = Enabled
+            local toggle = false
 
             if toggle then
                 Dot.Position = UDim2.new(0.594594598, 0, -0.333333343, 0)
