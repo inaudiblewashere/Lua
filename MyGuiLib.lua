@@ -962,7 +962,8 @@ function Library:CreateWindow(Version, PrimaryColor, SecondaryColor)
 
         function ElementHandler.Section()
             local Section = Instance.new("Frame")
-            Section.Size = UDim2.new(0, 0, 0, 30)
+            Section.Parent = NewPage
+            Section.Size = UDim2.new(0, 0, 0, 20)
             Section.BackgroundTransparency = 1
         end
 
