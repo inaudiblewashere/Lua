@@ -706,6 +706,11 @@ function Library:CreateWindow(Version, PrimaryColor, SecondaryColor)
                     UIPadding.PaddingLeft = UDim.new(0, 30)
                     expand = expand + 35
                     Dropdown.Size = UDim2.new(0, 317, 0, expand)
+
+                    Item.MouseButton1Click:Connect(function()
+                        ButtonText.Text = Title..": "..v
+                        Callback(v)
+                    end)
                 end
             end
 
@@ -732,15 +737,6 @@ function Library:CreateWindow(Version, PrimaryColor, SecondaryColor)
                     }):Play()
                 end
             end)
-
-            for i,v in next, Dropdown:GetChildren() do
-                if v.Name == "Item" then
-                    v.MouseButton1Click:Connect(function()
-                        ButtonText.Text = v.Text
-                        Callback(v.Text)
-                    end)
-                end
-            end
             return droplib
         end
 
