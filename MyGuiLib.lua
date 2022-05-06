@@ -519,7 +519,7 @@ function Library:CreateWindow(Version, PrimaryColor, SecondaryColor)
             Slider.Name = "Slider"
             Slider.Parent = SliderBar
             Slider.BackgroundColor3 = SecondaryColor
-            Slider.Position = UDim2.new((Default/Max), 0, -1, 0)
+            Slider.Position = UDim2.new((Default-Min)/(Max-Min), 0, -1, 0)
             Slider.Size = UDim2.new(0, 8, 0, 15)
             Slider.Modal = true
             Slider.Font = Enum.Font.SourceSans
@@ -553,7 +553,7 @@ function Library:CreateWindow(Version, PrimaryColor, SecondaryColor)
             local value = Default
             Reset.MouseButton1Click:Connect(function()
                 Number.Text = Default
-                Slider.Position = UDim2.new((Default/Max), 0, -1, 0)
+                Slider.Position = UDim2.new((Default-Min)/(Max-Min), 0, -1, 0)
                 game.TweenService:Create(Reset,TweenInfo.new(0.2,Enum.EasingStyle.Linear),{
                     Rotation = -360
                 }):Play()
@@ -561,29 +561,31 @@ function Library:CreateWindow(Version, PrimaryColor, SecondaryColor)
                 Reset.Rotation = 0
                 Callback(value)
             end)
-            
-            local dragging = false
-            local UIS = game:GetService("UserInputService")
 
             Slider.MouseButton1Down:Connect(function()
-                dragging = true
-            end)
-            UIS.InputEnded:Connect(function(input)
-                if input.UserInputType == Enum.UserInputType.MouseButton1 then
-                    dragging = false
-                end
-            end)
+                local dragging = true
+                local mousedetect, mousemove
+                local UIS = game:GetService("UserInputService")
 
-            UIS.InputChanged:Connect(function(input)
-                if dragging then
-                    local mouse = UIS:GetMouseLocation()
-                    local relative = mouse - SliderFrame.AbsolutePosition
-                    local percentage = math.clamp((relative.X-14)/(SliderBar.AbsoluteSize.X), 0, 1)
-                    Slider.Position = UDim2.new(percentage,0,-1,0)
-                    value = math.round((percentage * (Max-Min)) + Min)
-                    Number.Text = value
-                    Callback(value)
-                end
+                mousemove = UIS.InputChanged:Connect(function(input)
+                    if dragging then
+                        local mouse = UIS:GetMouseLocation()
+                        local relative = mouse - SliderFrame.AbsolutePosition
+                        local percentage = math.clamp((relative.X-14)/(SliderBar.AbsoluteSize.X), 0, 1)
+                        Slider.Position = UDim2.new(percentage,0,-1,0)
+                        value = math.round((percentage * (Max-Min)) + Min)
+                        Number.Text = value
+                        Callback(value)
+                    end
+                end)
+
+                mousedetect = UIS.InputEnded:Connect(function(input)
+                    if input.UserInputType == Enum.UserInputType.MouseButton1 then
+                        dragging = false
+                        mousedetect:Disconnect()
+                        mousemove:Disconnect()
+                    end
+                end)
             end)
         end
 
