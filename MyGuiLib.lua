@@ -964,4 +964,3 @@ function Library:CreateWindow(Version, PrimaryColor, SecondaryColor)
     return StuffHandler
 end
 
-return Library
