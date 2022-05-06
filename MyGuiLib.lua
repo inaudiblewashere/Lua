@@ -402,8 +402,6 @@ function Library:CreateWindow(Version, PrimaryColor, SecondaryColor)
 
             Toggle.MouseButton1Click:Connect(function()
                 toggling = not toggling
-                Callback(toggling)
-
                 if toggling then
                     game.TweenService:Create(Dot, TweenInfo.new(0.2, Enum.EasingStyle.Quart, Enum.EasingDirection.InOut), {
                         Position = UDim2.new(0.594594598, 0, -0.333333343, 0)
@@ -419,6 +417,7 @@ function Library:CreateWindow(Version, PrimaryColor, SecondaryColor)
                         BackgroundColor3 = Color3.fromRGB(70, 70, 70)
                     }):Play()
                 end
+                Callback(toggling)
             end)
 
         end
