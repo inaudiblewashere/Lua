@@ -680,9 +680,29 @@ function Library:CreateWindow(Version, PrimaryColor, SecondaryColor)
             local droplib = {}
 
             function droplib:ChangeList(NewList)
-                if Dropdown.Item then
-                    Dropdown.Item:Destroy()
+                if Dropdown then
+                    Dropdown:Destroy()
                 end
+
+                Dropdown.Name = "Dropdown"
+                Dropdown.Parent = DropdownButton
+                Dropdown.BorderSizePixel = 0
+                Dropdown.BackgroundColor3 = Color3.fromRGB(43, 43, 43)
+                Dropdown.Position = UDim2.new(-0.105497673, 0, 1.06666672, 0)
+                Dropdown.Size = UDim2.new(0, 317, 0, 5)
+        
+                ButtonCorner.Name = "ButtonCorner"
+                ButtonCorner.Parent = Dropdown
+
+                DropdownPadding_2.Name = "DropdownPadding"
+                DropdownPadding_2.Parent = Dropdown
+                DropdownPadding_2.PaddingBottom = UDim.new(0, 5)
+                DropdownPadding_2.PaddingTop = UDim.new(0, 5)
+
+                UIListLayout.Parent = Dropdown
+                UIListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
+                UIListLayout.Padding = UDim.new(0, 5)
+
                 for i,v in next, NewList do
                     local Item = Instance.new("TextButton")
                     local ItemCorner = Instance.new("UICorner")
