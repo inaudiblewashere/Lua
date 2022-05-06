@@ -356,7 +356,7 @@ function Library:CreateWindow(Version, PrimaryColor, SecondaryColor)
         function ElementHandler.Toggle(ToggleOptions)
             local Title = ToggleOptions.Title or "This is a Toggle"
             local Callback = ToggleOptions.Callback or function() end
-            
+            local Enabled = ToggleOptions.Enable or false
             local Toggle = Instance.new("TextButton")
             local ButtonCorner = Instance.new("UICorner")
             local UIPadding = Instance.new("UIPadding")
@@ -398,7 +398,12 @@ function Library:CreateWindow(Version, PrimaryColor, SecondaryColor)
             DotCorner.CornerRadius = UDim.new(0, 50)
             DotCorner.Parent = Dot
             
-            local toggle = false
+            local toggle = Enabled
+
+            if toggle then
+                Dot.Position = UDim2.new(0.594594598, 0, -0.333333343, 0)
+                Dot.BackgroundColor3 = SecondaryColor
+            end
 
             Toggle.MouseButton1Click:Connect(function()
                 toggle = not toggle
@@ -739,6 +744,7 @@ function Library:CreateWindow(Version, PrimaryColor, SecondaryColor)
             local Title = ChipsetOptions.Title or "This is a Chipset"
             local List = ChipsetOptions.List or {1,2,3,4,5}
             local BoolList = {}
+            local Enabled = ChipsetOptions.Enabled or false
             local Callback = ChipsetOptions.Callback or function () end
             local expand = 5
         
@@ -865,7 +871,12 @@ function Library:CreateWindow(Version, PrimaryColor, SecondaryColor)
                     expand = expand + 35
                     Chipset.Size = UDim2.new(0, 317, 0, expand)
                     
-                    local toggle = false
+                    local toggle = Enabled
+
+                    if toggle then
+                        Dot.Position = UDim2.new(0.594594598, 0, -0.333333343, 0)
+                        Dot.BackgroundColor3 = SecondaryColor
+                    end
 
                     Chip.MouseButton1Click:Connect(function()
                         toggle = not toggle
