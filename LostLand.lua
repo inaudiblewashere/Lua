@@ -334,7 +334,7 @@ tab2.Slider({
 })
 
 tab3.Toggle({
-    Title = "Auto use Helath Potion",
+    Title = "Auto use Health Potion",
     Callback = function(Value)
 		if Value then
 			heal = true
