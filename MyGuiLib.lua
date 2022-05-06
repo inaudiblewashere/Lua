@@ -673,7 +673,7 @@ function Library:CreateWindow(Version, PrimaryColor, SecondaryColor)
             local droplib = {}
 
             function droplib:ChangeList(NewList)
-                for v in next, NewList do
+                for i,v in next, NewList do
                     local Item = Instance.new("TextButton")
                     local ItemCorner = Instance.new("UICorner")
                     local UIPadding = Instance.new("UIPadding")
