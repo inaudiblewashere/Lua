@@ -664,6 +664,7 @@ function Library:CreateWindow(Version, PrimaryColor, SecondaryColor)
 
                 if Dropdown then
                     Dropdown:Destroy()
+                    expand = 5
                 end
                 
                 Dropdown = Instance.new("Frame")
@@ -753,7 +754,6 @@ function Library:CreateWindow(Version, PrimaryColor, SecondaryColor)
             local Title = ChipsetOptions.Title or "This is a Chipset"
             local List = ChipsetOptions.List or {1,2,3,4,5}
             local BoolList = {}
-            local Enabled = ChipsetOptions.Enabled or false
             local Callback = ChipsetOptions.Callback or function () end
             local expand = 5
         
@@ -880,7 +880,7 @@ function Library:CreateWindow(Version, PrimaryColor, SecondaryColor)
                     expand = expand + 35
                     Chipset.Size = UDim2.new(0, 317, 0, expand)
                     
-                    local toggle = Enabled
+                    local toggle = v
 
                     if toggle then
                         Dot.Position = UDim2.new(0.594594598, 0, -0.333333343, 0)
