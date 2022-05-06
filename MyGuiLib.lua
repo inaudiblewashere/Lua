@@ -658,31 +658,15 @@ function Library:CreateWindow(Version, PrimaryColor, SecondaryColor)
             Arrow.Image = "rbxassetid://9514886596"
             Arrow.ImageColor3 = SecondaryColor
 
-            Dropdown.Name = "Dropdown"
-            Dropdown.Parent = DropdownButton
-            Dropdown.BorderSizePixel = 0
-            Dropdown.BackgroundColor3 = Color3.fromRGB(43, 43, 43)
-            Dropdown.Position = UDim2.new(-0.105497673, 0, 1.06666672, 0)
-            Dropdown.Size = UDim2.new(0, 317, 0, 5)
-    
-            ButtonCorner.Name = "ButtonCorner"
-            ButtonCorner.Parent = Dropdown
-
-            DropdownPadding_2.Name = "DropdownPadding"
-            DropdownPadding_2.Parent = Dropdown
-            DropdownPadding_2.PaddingBottom = UDim.new(0, 5)
-            DropdownPadding_2.PaddingTop = UDim.new(0, 5)
-
-            UIListLayout.Parent = Dropdown
-            UIListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
-            UIListLayout.Padding = UDim.new(0, 5)
-
             local droplib = {}
 
             function droplib:ChangeList(NewList)
+
                 if Dropdown then
                     Dropdown:Destroy()
                 end
+                
+                Dropdown = Instance.new("Frame")
 
                 Dropdown.Name = "Dropdown"
                 Dropdown.Parent = DropdownButton
@@ -690,19 +674,21 @@ function Library:CreateWindow(Version, PrimaryColor, SecondaryColor)
                 Dropdown.BackgroundColor3 = Color3.fromRGB(43, 43, 43)
                 Dropdown.Position = UDim2.new(-0.105497673, 0, 1.06666672, 0)
                 Dropdown.Size = UDim2.new(0, 317, 0, 5)
-        
+
+                ButtonCorner = Instance.new("UICorner")
                 ButtonCorner.Name = "ButtonCorner"
                 ButtonCorner.Parent = Dropdown
-
+                DropdownPadding_2 = Instance.new("UIPadding")
                 DropdownPadding_2.Name = "DropdownPadding"
                 DropdownPadding_2.Parent = Dropdown
                 DropdownPadding_2.PaddingBottom = UDim.new(0, 5)
                 DropdownPadding_2.PaddingTop = UDim.new(0, 5)
 
+                UIListLayout = Instance.new("UIListLayout")
                 UIListLayout.Parent = Dropdown
                 UIListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
                 UIListLayout.Padding = UDim.new(0, 5)
-
+                
                 for i,v in next, NewList do
                     local Item = Instance.new("TextButton")
                     local ItemCorner = Instance.new("UICorner")
