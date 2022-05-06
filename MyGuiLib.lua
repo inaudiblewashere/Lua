@@ -559,7 +559,7 @@ function Library:CreateWindow(Version, PrimaryColor, SecondaryColor)
                 }):Play()
                 wait(0.2)
                 Reset.Rotation = 0
-                Callback(value)
+                Callback(Default)
             end)
 
             Slider.MouseButton1Down:Connect(function()
