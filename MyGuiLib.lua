@@ -670,8 +670,14 @@ function Library:CreateWindow(Version, PrimaryColor, SecondaryColor)
             UIListLayout.HorizontalAlignment = Enum.HorizontalAlignment.Center
             UIListLayout.Padding = UDim.new(0, 5)
 
-            if List ~= nil then
-                for v in next, List do
+            local droplib = {}
+
+            function droplib:ChangeList(NewList)
+                if Dropdown.Item then
+                    Dropdown.Item:Destroy()
+                end
+
+                for v in next, NewList do
                     local Item = Instance.new("TextButton")
                     local ItemCorner = Instance.new("UICorner")
                     local UIPadding = Instance.new("UIPadding")
@@ -694,6 +700,10 @@ function Library:CreateWindow(Version, PrimaryColor, SecondaryColor)
                     expand = expand + 35
                     Dropdown.Size = UDim2.new(0, 317, 0, expand)
                 end
+            end
+
+            if List ~= nil then
+                droplib:ChangeList(List)
             end
 
             local Dropped = false
@@ -724,6 +734,7 @@ function Library:CreateWindow(Version, PrimaryColor, SecondaryColor)
                     end)
                 end
             end
+            return droplib
         end
 
         function ElementHandler.Chipset(ChipsetOptions)
