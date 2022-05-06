@@ -472,7 +472,7 @@ function Library:CreateWindow(Version, PrimaryColor, SecondaryColor)
             local Title = SliderOptions.Title or "This is a slider"
             local Callback = SliderOptions.Callback or function() end
 
-            local Default = SliderOptions.Default or 0
+            local Default = SliderOptions.Def or 0
             local Max = SliderOptions.Max or 100
             local Min = SliderOptions.Min or 0
 
@@ -550,6 +550,7 @@ function Library:CreateWindow(Version, PrimaryColor, SecondaryColor)
             Number.TextColor3 = SecondaryColor
             Number.TextSize = 18.000
 
+            local value = Default
             Reset.MouseButton1Click:Connect(function()
                 Number.Text = Default
                 Slider.Position = UDim2.new((Default/Max), 0, -1, 0)
@@ -558,11 +559,11 @@ function Library:CreateWindow(Version, PrimaryColor, SecondaryColor)
                 }):Play()
                 wait(0.2)
                 Reset.Rotation = 0
+                Callback(value)
             end)
             
             local dragging = false
             local UIS = game:GetService("UserInputService")
-            local value = Default
 
             Slider.MouseButton1Down:Connect(function()
                 dragging = true
