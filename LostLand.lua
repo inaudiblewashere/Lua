@@ -35,6 +35,7 @@ local TextChoice = nil
 local Picking = false
 local PTable = {}
 local KillingTime = false
+local render = false
 local MineMethod = game:GetService("Workspace")
 
 local KillPlayers = function(Player)
@@ -102,21 +103,25 @@ local AutoMine = function()
 			local x = s:gsub("%p", " ")
 			local exists = true
 			local check = MineMethod:FindFirstChild(x.." Rock")
-			if check == nil then
-				exists = false
+			if check == nil and not render then
+				check = MineMethod.Ores:FindFirstChild(x.." Rock")
+				if check == nil then
+					exists = false
+				end
+				check = MineMethod.Ores
 			end
 			while exists and Mining do
 				wait(0.001)
-				check = MineMethod:FindFirstChild(x.." Rock")
+				ore = check:FindFirstChild(x.." Rock")
 				while Mining do
 					wait(0.01)
-					check = game:GetService("Workspace"):FindFirstChild(x)
-					if check == nil then
+					local itemcheck = game:GetService("Workspace"):FindFirstChild(x)
+					if itemcheck == nil then
 						break
 					end
 					Plr.Character.HumanoidRootPart.CFrame = game:GetService("Workspace")[x].CFrame
 					do
-						game:GetService("ReplicatedStorage").Events:FindFirstChild("Pick up"):FireServer(check)
+						game:GetService("ReplicatedStorage").Events:FindFirstChild("Pick up"):FireServer(itemcheck)
 					end
 				end
 
@@ -127,7 +132,7 @@ local AutoMine = function()
 				game:GetService("ReplicatedStorage").Events.DestroyModel:FireServer(unpack(args))
 				
 				do
-					Plr.Character.HumanoidRootPart.CFrame = MineMethod[x.." Rock"].Reference.CFrame
+					Plr.Character.HumanoidRootPart.CFrame = ore.Reference.CFrame
 				end
 			end
 		end
@@ -452,8 +457,10 @@ tab4.Toggle({
 	Callback = function(Value)
 		if Value == true then
 			MineMethod = game:GetService("ReplicatedStorage")["Render Folder"]
+			render = true
 		else
 			MineMethod = game:GetService("Workspace")
+			render = false
 		end
 	end
 })
@@ -495,7 +502,6 @@ tab4.Chipset({
 	end,
 	List = {
 		"Coal",
-		"Small",
         "Turquoise",
 		"Amethyst",
 		"Iron",
