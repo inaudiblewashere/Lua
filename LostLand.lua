@@ -449,7 +449,7 @@ tab4.Toggle({
 		if Value == true then
 			MineMethod = game:GetService("ReplicatedStorage")["Render Folder"]
 		else
-			MineMethod = game:GetService("Workspace").Ores
+			MineMethod = game:GetService("Workspace")
 		end
 	end
 })
