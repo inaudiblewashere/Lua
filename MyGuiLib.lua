@@ -973,9 +973,11 @@ function Library:CreateWindow(Version, PrimaryColor, SecondaryColor)
             end)
         end
 
-        function ElementHandler.Section()
-            local Section = Instance.new("Frame")
+        function ElementHandler.Section(Title)
+            local Title = Title or ""
+            local Section = Instance.new("TextLabel")
             Section.Parent = NewPage
+            Section.Text = Title
             Section.Size = UDim2.new(0, 0, 0, 20)
             Section.BackgroundTransparency = 1
         end

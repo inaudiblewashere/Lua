@@ -448,6 +448,17 @@ tab4.Toggle({
 })
 
 tab4.Toggle({
+    Title = "Mine Unrendered (For Slower PC)",
+	Callback = function(Value)
+		if Value == true then
+			MineMethod = game:GetService("ReplicatedStorage")["Render Folder"]
+		else
+			MineMethod = game:GetService("Workspace")
+		end
+	end
+})
+
+tab4.Toggle({
     Title = "Auto Mine",
 	Callback = function(Value)
 		if Value == true then
