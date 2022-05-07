@@ -433,7 +433,7 @@ tab4.Text({
 	end
 })
 
-tab4.Section()
+tab4.Section("Turn off Reduce Lag in settings (Z)")
 
 tab4.Toggle({
     Title = "Steal Ores (Good for Meteorite)",

@@ -978,6 +978,7 @@ function Library:CreateWindow(Version, PrimaryColor, SecondaryColor)
             local Section = Instance.new("TextLabel")
             Section.Parent = NewPage
             Section.Text = Title
+            Section.TextColor3 = SecondaryColor
             Section.Size = UDim2.new(0, 0, 0, 20)
             Section.BackgroundTransparency = 1
         end
