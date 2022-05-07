@@ -444,7 +444,7 @@ tab4.Toggle({
 tab4.Section()
 
 tab4.Toggle({
-    Title = "Mine Whole Map",
+    Title = "Mine Unrendered Ores",
 	Callback = function(Value)
 		if Value == true then
 			MineMethod = game:GetService("ReplicatedStorage")["Render Folder"]
