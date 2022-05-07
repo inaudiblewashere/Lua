@@ -24,7 +24,9 @@ local Pickaxes = {
 	"Tanzanite Pick",
 	"Jade Pick",
 	"Apatite Pick",
+	"Diamond Pick",
 	"Topaz Pick",
+	"Lightning Tool",
 	"Obsidian Pick",
 	"Fire Opal Pick",
 	"Meteorite Pick"
@@ -53,12 +55,11 @@ end
 ESP:AddObjectListener(game:GetService("Workspace").Ores, {
     Type = "Model",
     Validator = function(obj)
-        for i,v in pairs(OreTable) do
-			if obj.Name == v.." Rock" then
-				return true
-			end
+		if obj.Name == "Small Rock" or obj.Name == "Huge Rock" or obj.Name == "Big Rock" then
+				return false
 		end
-        return false
+
+        return true
     end,
 	OnAdded = function(box)
 		box.Components.Quad:Remove()
