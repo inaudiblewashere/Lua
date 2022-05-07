@@ -381,6 +381,13 @@ tab3.Toggle({
 
 tab3.Section()
 
+tab3.Button({
+	Title = "2x Cut Speed",
+	Callback = function()
+			game:GetService("Players").LocalPlayer.PlayerData.Others.ToolCutTime.Value = 0
+	end
+})
+
 tab3.Toggle({
     Title = "Kill Player",
     Callback = function(Value)
