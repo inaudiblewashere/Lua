@@ -44,10 +44,8 @@ local KillPlayers = function(Player)
 			[1] = game:GetService("Players").LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").Name),
 			[2] = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
 		}
-
-		game:GetService("ReplicatedStorage").Events.DestroyModel:FireServer(unpack(args))
-
 		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Players")[Player].Character.HumanoidRootPart.CFrame + game:GetService("Players")[Player].Character.HumanoidRootPart.CFrame.lookVector * -1
+		game:GetService("ReplicatedStorage").Events.DestroyModel:FireServer(unpack(args))
 	end
 end
 
@@ -80,6 +78,9 @@ ESP:AddObjectListener(game:GetService("Workspace").Animals, {
 		box.Components.Distance = {Remove = function() end}
 	end
 })
+
+game:GetService("ReplicatedStorage").Events.Replicate:FireServer("ReduceLag", false)
+
 
 local AutoMine = function()
 	local tool = nil
@@ -442,17 +443,6 @@ tab4.Toggle({
 })
 
 tab4.Section()
-
-tab4.Toggle({
-    Title = "Mine Unrendered Ores",
-	Callback = function(Value)
-		if Value == true then
-			MineMethod = game:GetService("ReplicatedStorage")["Render Folder"]
-		else
-			MineMethod = game:GetService("Workspace")
-		end
-	end
-})
 
 tab4.Toggle({
     Title = "Auto Mine",
