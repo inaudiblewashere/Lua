@@ -35,7 +35,7 @@ local TextChoice = nil
 local Picking = false
 local PTable = {}
 local KillingTime = false
-local MineMethod = game:GetService("Workspace").Ores
+local MineMethod = game:GetService("Workspace")
 
 local KillPlayers = function(Player)
 	while KillingTime do
@@ -79,9 +79,6 @@ ESP:AddObjectListener(game:GetService("Workspace").Animals, {
 	end
 })
 
-game:GetService("ReplicatedStorage").Events.Replicate:FireServer("ReduceLag", false)
-
-
 local AutoMine = function()
 	local tool = nil
 	local Plr = game:GetService("Players").LocalPlayer
@@ -111,20 +108,18 @@ local AutoMine = function()
 			while exists and Mining do
 				wait(0.001)
 				check = MineMethod:FindFirstChild(x.." Rock")
-				if check == nil then
-					while Mining do
-						wait(0.01)
-						check = game:GetService("Workspace"):FindFirstChild(x)
-						if check == nil then
-							break
-						end
-						Plr.Character.HumanoidRootPart.CFrame = game:GetService("Workspace")[x].CFrame
-						do
-							game:GetService("ReplicatedStorage").Events:FindFirstChild("Pick up"):FireServer(check)
-						end
+				while Mining do
+					wait(0.01)
+					check = game:GetService("Workspace"):FindFirstChild(x)
+					if check == nil then
+						break
 					end
-					break
+					Plr.Character.HumanoidRootPart.CFrame = game:GetService("Workspace")[x].CFrame
+					do
+						game:GetService("ReplicatedStorage").Events:FindFirstChild("Pick up"):FireServer(check)
+					end
 				end
+
 				local args = {
 					[1] = Plr.Character:FindFirstChild(Plr.Character:FindFirstChildOfClass("Tool").Name),
 					[2] = Plr.Character.HumanoidRootPart.CFrame
@@ -243,12 +238,20 @@ local tab5 = x.Tab({Title = "Coin Farm", Icon = "money"})
 
 local uitoggle = true
 local bind = "P"
+local focused = false
 local uis = game:service('UserInputService');
+uis.TextBoxFocused:Connect(function()
+	focused = true
+end)
+uis.TextBoxFocusReleased:Connect(function()
+    focused = false
+end)
 uis.InputBegan:connect(function(key)
-    if key.KeyCode == bind then
+    if key.KeyCode == bind and not focused then
         x.LibraryToggle()
     end
 end)
+
 tab1.Keybind({
     Title = "Toggle UI",
     Key = "P",
@@ -430,6 +433,8 @@ tab4.Text({
 	end
 })
 
+tab4.Section()
+
 tab4.Toggle({
     Title = "Steal Ores (Good for Meteorite)",
 	Callback = function(Value)
@@ -441,8 +446,6 @@ tab4.Toggle({
 		end
 	end
 })
-
-tab4.Section()
 
 tab4.Toggle({
     Title = "Auto Mine",
