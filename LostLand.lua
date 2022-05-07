@@ -528,7 +528,8 @@ tab5.Toggle({
 	end
 })
 
-tab5.Button({Title = "How to: Go to Solo Island"})
-tab5.Button({Title = "Then Make Fish Farms and a Market"})
-tab5.Button({Title = "Then Activate the Farm and"})
-tab5.Button({Title = "Sell the meat at the market EZ MONEY"})
+tab5.Section("---------- How to Setup ----------")
+tab5.Section("Go to solo island and make as many fish traps as you want")
+tab5.Section("then make a market so you can sell the fish meat")
+tab5.Section("activate the farm and whenever your backpack is full")
+tab5.Section("sell the fish meat at the market")
