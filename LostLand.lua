@@ -103,16 +103,17 @@ local AutoMine = function()
 			local x = s:gsub("%p", " ")
 			local exists = true
 			local check = MineMethod:FindFirstChild(x.." Rock")
+			local mine = MineMethod
 			if check == nil and not render then
 				check = MineMethod.Ores:FindFirstChild(x.." Rock")
 				if check == nil then
 					exists = false
 				end
-				check = MineMethod.Ores:FindFirstChild(x.." Rock")
+				mine = MineMethod.Ores
 			end
 			while exists and Mining do
 				wait(0.001)
-				local ore = check
+				local ore = mine:FindFirstChild(x.." Rock")
 				while Mining do
 					wait(0.01)
 					local itemcheck = game:GetService("Workspace"):FindFirstChild(x)
