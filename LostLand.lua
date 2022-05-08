@@ -35,6 +35,7 @@ local TextChoice = nil
 local Picking = false
 local PTable = {}
 local KillingTime = false
+local KillingAllTime = false
 local render = false
 local MineMethod = game:GetService("Workspace")
 
@@ -47,6 +48,25 @@ local KillPlayers = function(Player)
 		}
 		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Players")[Player].Character.HumanoidRootPart.CFrame + game:GetService("Players")[Player].Character.HumanoidRootPart.CFrame.lookVector * -1
 		game:GetService("ReplicatedStorage").Events.DestroyModel:FireServer(unpack(args))
+	end
+end
+
+local KillAllPlayers = function()
+	while KillingAllTime do
+		wait()
+		for i,v in pairs(PTable) do
+			if game:GetService("Workspace")[v] then
+				while game:GetService("Workspace")[v].Humanoid.Health > 0 and KillingAllTime do
+					wait()
+					local args = {
+						[1] = game:GetService("Players").LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").Name),
+						[2] = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+					}
+					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Players")[v].Character.HumanoidRootPart.CFrame + game:GetService("Players")[v].Character.HumanoidRootPart.CFrame.lookVector * -1
+					game:GetService("ReplicatedStorage").Events.DestroyModel:FireServer(unpack(args))
+				end
+			end
+		end
 	end
 end
 
@@ -393,7 +413,19 @@ tab3.Button({
 })
 
 tab3.Toggle({
-    Title = "Kill Player",
+    Title = "Kill All Players",
+    Callback = function(Value)
+        if Value then
+			KillingAllTime = true
+			KillAllPlayers(PlayerChoice)
+		else
+			KillingAllTime = false
+		end
+    end
+})
+
+tab3.Toggle({
+    Title = "Kill Target",
     Callback = function(Value)
         if Value then
 			KillingTime = true
