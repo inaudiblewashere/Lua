@@ -112,7 +112,7 @@ local AutoMine = function()
 			end
 			while exists and Mining do
 				wait(0.001)
-				ore = check:FindFirstChild(x.." Rock")
+				local ore = check:FindFirstChild(x.." Rock")
 				while Mining do
 					wait(0.01)
 					local itemcheck = game:GetService("Workspace"):FindFirstChild(x)
@@ -123,6 +123,9 @@ local AutoMine = function()
 					do
 						game:GetService("ReplicatedStorage").Events:FindFirstChild("Pick up"):FireServer(itemcheck)
 					end
+				end
+				if ore == nil then
+					break
 				end
 
 				local args = {
@@ -448,19 +451,7 @@ tab4.Text({
 tab4.Section("Turn off Reduce Lag in settings (Z)")
 
 tab4.Toggle({
-    Title = "Steal Ores (Good for Meteorite)",
-	Callback = function(Value)
-		if Value == true then
-			Steal = true
-			StealOres()
-		else
-			Steal = false
-		end
-	end
-})
-
-tab4.Toggle({
-    Title = "Mine Unrendered (For Slower PC)",
+    Title = "(Check this if you need reduce lag)",
 	Callback = function(Value)
 		if Value == true then
 			MineMethod = game:GetService("ReplicatedStorage")["Render Folder"]
@@ -468,6 +459,18 @@ tab4.Toggle({
 		else
 			MineMethod = game:GetService("Workspace")
 			render = false
+		end
+	end
+})
+
+tab4.Toggle({
+    Title = "Steal Ores (Select Ores First)",
+	Callback = function(Value)
+		if Value == true then
+			Steal = true
+			StealOres()
+		else
+			Steal = false
 		end
 	end
 })
