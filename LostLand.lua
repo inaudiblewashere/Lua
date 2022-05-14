@@ -46,7 +46,7 @@ local KillPlayers = function(Player)
 			[1] = game:GetService("Players").LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").Name),
 			[2] = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
 		}
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Players")[Player].Character.HumanoidRootPart.CFrame + game:GetService("Players")[Player].Character.HumanoidRootPart.CFrame.lookVector
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Players")[Player].Character.HumanoidRootPart.CFrame + game:GetService("Players")[Player].Character.HumanoidRootPart.CFrame.lookVector * -1
 		game:GetService("ReplicatedStorage").Events.DestroyModel:FireServer(unpack(args))
 	end
 end
@@ -62,7 +62,7 @@ local KillAllPlayers = function()
 						[1] = game:GetService("Players").LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").Name),
 						[2] = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
 					}
-					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Players")[v].Character.HumanoidRootPart.CFrame + game:GetService("Players")[v].Character.HumanoidRootPart.CFrame.lookVector
+					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Players")[v].Character.HumanoidRootPart.CFrame + game:GetService("Players")[v].Character.HumanoidRootPart.CFrame.lookVector * -1
 					game:GetService("ReplicatedStorage").Events.DestroyModel:FireServer(unpack(args))
 				end
 			end
