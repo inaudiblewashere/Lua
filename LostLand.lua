@@ -42,11 +42,11 @@ local MineMethod = game:GetService("Workspace")
 local KillPlayers = function(Player)
 	while KillingTime do
 		wait()
+		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Players")[Player].Character.HumanoidRootPart.CFrame + game:GetService("Players")[Player].Character.HumanoidRootPart.CFrame.lookVector * -1
 		local args = {
 			[1] = game:GetService("Players").LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").Name),
-			[2] = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+			[2] = game:GetService("Players")[Player].Character.HumanoidRootPart.CFrame
 		}
-		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Players")[Player].Character.HumanoidRootPart.CFrame + game:GetService("Players")[Player].Character.HumanoidRootPart.CFrame.lookVector * -1
 		game:GetService("ReplicatedStorage").Events.DestroyModel:FireServer(unpack(args))
 	end
 end
@@ -58,12 +58,16 @@ local KillAllPlayers = function()
 			if game:GetService("Workspace")[v] then
 				while game:GetService("Workspace")[v].Humanoid.Health > 0 and KillingAllTime do
 					wait()
+					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Players")[v].Character.HumanoidRootPart.CFrame + game:GetService("Players")[v].Character.HumanoidRootPart.CFrame.lookVector * -1
 					local args = {
 						[1] = game:GetService("Players").LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").Name),
-						[2] = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+						[2] = game:GetService("Players")[v].Character.HumanoidRootPart.CFrame
 					}
-					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Players")[v].Character.HumanoidRootPart.CFrame + game:GetService("Players")[v].Character.HumanoidRootPart.CFrame.lookVector * -1
 					game:GetService("ReplicatedStorage").Events.DestroyModel:FireServer(unpack(args))
+					if game:GetService("UserInputService"):IsKeyDown(Enum.KeyCode.RightShift) then
+						wait(0.5)
+						break
+					end
 				end
 			end
 		end
