@@ -122,7 +122,7 @@ local AutoMine = function()
 		Plr.Character.Humanoid:EquipTool(tool)
 	end
 	while Mining do
-		wait(0.01)
+		wait(0.001)
 		for j,s in pairs(OreTable) do
 			local x = s:gsub("%p", " ")
 			local exists = true
@@ -136,10 +136,10 @@ local AutoMine = function()
 				mine = MineMethod.Ores
 			end
 			while exists and Mining do
-				wait(0.001)
+				wait(0.01)
 				local ore = mine:FindFirstChild(x.." Rock")
 				while Mining do
-					wait(0.01)
+					wait()
 					local itemcheck = game:GetService("Workspace"):FindFirstChild(x)
 					if itemcheck == nil then
 						break
@@ -149,16 +149,14 @@ local AutoMine = function()
 						game:GetService("ReplicatedStorage").Events:FindFirstChild("Pick up"):FireServer(itemcheck)
 					end
 				end
-				if ore == nil then
+				if ore:GetFullName() == ore.Name or ore == nil then
 					break
 				end
-
 				local args = {
 					[1] = Plr.Character:FindFirstChild(Plr.Character:FindFirstChildOfClass("Tool").Name),
 					[2] = Plr.Character.HumanoidRootPart.CFrame
 				}
 				game:GetService("ReplicatedStorage").Events.DestroyModel:FireServer(unpack(args))
-				
 				do
 					Plr.Character.HumanoidRootPart.CFrame = ore.Reference.CFrame
 				end
@@ -262,7 +260,7 @@ local AutoEat = function()
 		end
 	end
 end
-local x = Library:CreateWindow("The Lost Land v0.5")
+local x = Library:CreateWindow("The Lost Land v0.7")
 local tab1 = x.Tab({Title = "Main Menu"})
 local tab2 = x.Tab({Title = "Local Player", Icon = "player"})
 local tab3 = x.Tab({Title = "Annoying", Icon = "pvp"})
