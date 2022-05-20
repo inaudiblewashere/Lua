@@ -149,7 +149,9 @@ local AutoMine = function()
 						game:GetService("ReplicatedStorage").Events:FindFirstChild("Pick up"):FireServer(itemcheck)
 					end
 				end
-				if ore:GetFullName() == ore.Name or ore == nil then
+				if ore == nil then
+					break
+				elseif  ore:GetFullName() == ore.Name then
 					break
 				end
 				local args = {
