@@ -483,20 +483,7 @@ tab4.Text({
 	end
 })
 
-tab4.Section("Turn off Reduce Lag in settings (Z)")
-
-tab4.Toggle({
-    Title = "(Check this if you need reduce lag)",
-	Callback = function(Value)
-		if Value == true then
-			MineMethod = game:GetService("ReplicatedStorage")["Render Folder"]
-			render = true
-		else
-			MineMethod = game:GetService("Workspace")
-			render = false
-		end
-	end
-})
+tab4.Section("Turn off Reduce Lag in settings (Z) to make it go faster")
 
 tab4.Toggle({
     Title = "Steal Ores (Select Ores First)",
