@@ -44,10 +44,9 @@ local KillPlayers = function(Player)
 		wait()
 		game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Players")[Player].Character.HumanoidRootPart.CFrame + game:GetService("Players")[Player].Character.HumanoidRootPart.CFrame.lookVector * -1
 		local args = {
-			[1] = game:GetService("Players").LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").Name),
-			[2] = game:GetService("Players")[Player].Character.HumanoidRootPart.CFrame
+			[1] = game:GetService("Players")[Player].Character.HumanoidRootPart.CFrame
 		}
-		game:GetService("ReplicatedStorage").Events.DestroyModel:FireServer(unpack(args))
+		game:GetService("ReplicatedStorage").Events.Mine:FireServer(unpack(args))
 	end
 end
 
@@ -60,10 +59,9 @@ local KillAllPlayers = function()
 					wait()
 					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Players")[v].Character.HumanoidRootPart.CFrame + game:GetService("Players")[v].Character.HumanoidRootPart.CFrame.lookVector * -1
 					local args = {
-						[1] = game:GetService("Players").LocalPlayer.Character:FindFirstChild(game.Players.LocalPlayer.Character:FindFirstChildOfClass("Tool").Name),
-						[2] = game:GetService("Players")[v].Character.HumanoidRootPart.CFrame
-					}
-					game:GetService("ReplicatedStorage").Events.DestroyModel:FireServer(unpack(args))
+            [1] = game:GetService("Players")[Player].Character.HumanoidRootPart.CFrame
+          }
+          game:GetService("ReplicatedStorage").Events.Mine:FireServer(unpack(args))
 					if game:GetService("UserInputService"):IsKeyDown(Enum.KeyCode.RightShift) then
 						wait(0.5)
 						break
@@ -155,10 +153,9 @@ local AutoMine = function()
 					break
 				end
 				local args = {
-					[1] = Plr.Character:FindFirstChild(Plr.Character:FindFirstChildOfClass("Tool").Name),
-					[2] = Plr.Character.HumanoidRootPart.CFrame
-				}
-				game:GetService("ReplicatedStorage").Events.DestroyModel:FireServer(unpack(args))
+          [1] = Plr.Character.HumanoidRootPart.CFrame
+        }
+        game:GetService("ReplicatedStorage").Events.Mine:FireServer(unpack(args))
 				do
 					Plr.Character.HumanoidRootPart.CFrame = ore.Reference.CFrame
 				end
