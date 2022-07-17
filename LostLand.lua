@@ -59,7 +59,7 @@ local KillAllPlayers = function()
 					wait()
 					game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Players")[v].Character.HumanoidRootPart.CFrame + game:GetService("Players")[v].Character.HumanoidRootPart.CFrame.lookVector * -1
 					local args = {
-            [1] = game:GetService("Players")[Player].Character.HumanoidRootPart.CFrame
+            [1] = game:GetService("Players")[v].Character.HumanoidRootPart.CFrame
           }
           game:GetService("ReplicatedStorage").Events.Mine:FireServer(unpack(args))
 					if game:GetService("UserInputService"):IsKeyDown(Enum.KeyCode.RightShift) then
