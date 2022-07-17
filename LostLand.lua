@@ -16,8 +16,9 @@ local Pickaxes = {
 	"Gold Pick",
 	"Crystal Pick",
 	"Ruby Pick",
+  "Rhodonite Pick",
+  "Meteorite",
 	"Green Quartz Pick",
-	"Rhodonite Pick",
 	"Saphire Pick",
 	"Shell Pick",
 	"Titanium Pick",
@@ -29,7 +30,7 @@ local Pickaxes = {
 	"Lightning Tool",
 	"Obsidian Pick",
 	"Fire Opal Pick",
-	"Meteorite Pick"
+	"Hiddenite Pick"
 }
 local TextChoice = nil
 local Picking = false
@@ -76,7 +77,7 @@ end
 ESP:AddObjectListener(game:GetService("Workspace").Ores, {
     Type = "Model",
     Validator = function(obj)
-		if obj.Name == "Small Rock" or obj.Name == "Huge Rock" or obj.Name == "Big Rock" then
+		if obj.Name == "Small Rock 1" or obj.Name == "Medium Rock 1" or obj.Name == "Small Rock 2" or obj.Name == "Huge Rock" or obj.Name == "Big Rock" then
 				return false
 		end
 
@@ -144,7 +145,7 @@ local AutoMine = function()
 					end
 					Plr.Character.HumanoidRootPart.CFrame = game:GetService("Workspace")[x].CFrame
 					do
-						game:GetService("ReplicatedStorage").Events:FindFirstChild("Pick up"):FireServer(itemcheck)
+						game:GetService("ReplicatedStorage").Events:FindFirstChild("Pickup"):FireServer(itemcheck)
 					end
 				end
 				if ore == nil then
@@ -181,7 +182,7 @@ local StealOres = function()
 				end
 				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace")[v].CFrame
 				do
-					game:GetService("ReplicatedStorage").Events:FindFirstChild("Pick up"):FireServer(check)
+					game:GetService("ReplicatedStorage").Events:FindFirstChild("Pickup"):FireServer(check)
 				end
 			end
 		end
@@ -195,7 +196,7 @@ local TeleportPlayerItems = function(Item)
 			if v.Name == Item then
 				game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace")[Item].CFrame
 				do
-					game:GetService("ReplicatedStorage").Events:FindFirstChild("Pick up"):FireServer(v)
+					game:GetService("ReplicatedStorage").Events:FindFirstChild("Pickup"):FireServer(v)
 				end
 			end
 		end
@@ -229,9 +230,10 @@ local AutoHeal = function()
 	local Consume = game:GetService("ReplicatedStorage").Events.Consume
 	while heal do
 		wait(0.1)
-		local Health = string.gsub(game:GetService("Players").LocalPlayer.PlayerGui["Player Screen"].Vitals.Health.AmountDisplayer.Text, "%p", "")
+		local Health = string.gsub(game:GetService("Players").LocalPlayer.PlayerGui.PlayerScreen.RightContainer.Vitals.HealthBar.Display.Text, "%p", "")
 		if tonumber(Health) < 50 then
 			Consume:FireServer("Health Potion")
+      wait(0.5)
 		end
 	end
 end
@@ -241,9 +243,10 @@ local AutoDrink = function()
 	local Consume = game:GetService("ReplicatedStorage").Events.Consume
 	while thirst do
 		wait(0.1)
-		local Drink = string.gsub(game:GetService("Players").LocalPlayer.PlayerGui["Player Screen"].Vitals.Thirst.AmountDisplayer.Text, "%p", "")
+		local Drink = string.gsub(game:GetService("Players").LocalPlayer.PlayerGui.PlayerScreen.RightContainer.Vitals.ThirstBar.Display.Text, "%p", "")
 		if tonumber(Drink) < 50 then
 			Consume:FireServer("Thirst Potion")
+      wait(0.5)
 		end
 	end
 end
@@ -253,9 +256,10 @@ local AutoEat = function()
 	local Consume = game:GetService("ReplicatedStorage").Events.Consume
 	while hunger do
 		wait(0.1)
-		local Eat = string.gsub(game:GetService("Players").LocalPlayer.PlayerGui["Player Screen"].Vitals.Hunger.AmountDisplayer.Text, "%p", "")
+		local Eat = string.gsub(game:GetService("Players").LocalPlayer.PlayerGui.PlayerScreen.RightContainer.Vitals.HungerBar.Display.Text, "%p", "")
 		if tonumber(Eat) < 50 then
 			Consume:FireServer("Hunger Potion")
+      wait(0.5)
 		end
 	end
 end
@@ -541,6 +545,7 @@ tab4.Chipset({
 		"Ruby",
 		"Green_Quartz",
 		"Rhodonite",
+    "Meteorite",
 		"Sapphire",
 		"Titanium",
 		"Tanzanite",
@@ -549,7 +554,7 @@ tab4.Chipset({
 		"Topaz",
 		"Obsidian",
 		"Fire_Opal",
-		"Meteorite"
+		"Hiddenite"
 	}
 })
 
