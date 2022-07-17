@@ -263,7 +263,7 @@ local AutoEat = function()
 		end
 	end
 end
-local x = Library:CreateWindow("The Lost Land v0.7")
+local x = Library:CreateWindow("The Lost Land v0.9")
 local tab1 = x.Tab({Title = "Main Menu"})
 local tab2 = x.Tab({Title = "Local Player", Icon = "player"})
 local tab3 = x.Tab({Title = "Annoying", Icon = "pvp"})
