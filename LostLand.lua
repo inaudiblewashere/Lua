@@ -215,7 +215,7 @@ local FishFarm = function()
 					if x.name == "Raw Fish Meat" then
 						game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = x.CFrame
 						do
-							game:GetService("ReplicatedStorage").Events:FindFirstChild("Pick up"):FireServer(x)
+							game:GetService("ReplicatedStorage").Events:FindFirstChild("Pickup"):FireServer(x)
 						end
 					end
 				end
