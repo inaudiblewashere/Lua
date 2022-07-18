@@ -209,16 +209,12 @@ local FishFarm = function()
 	local name = game.Players.LocalPlayer.Name
 	while fishing do
 		wait()
-		for i,v in next, game:GetService("Workspace")[name.."Model"]:GetDescendants() do
-			if v.Name == "Fish Trap" then
-				for j,x in next, v:GetDescendants() do
-					if x.name == "Raw Fish Meat" then
-						game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = x.CFrame
-						do
-							game:GetService("ReplicatedStorage").Events:FindFirstChild("Pickup"):FireServer(x)
-						end
-					end
-				end
+		for i,v in next, game:GetService("Workspace"):GetChildren() do
+			if v.Name == "Raw Fish Meat" then
+        game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame
+        do
+          game:GetService("ReplicatedStorage").Events:FindFirstChild("Pickup"):FireServer(v)
+        end
 			end
 		end
 	end
