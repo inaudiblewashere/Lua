@@ -154,12 +154,11 @@ local AutoMine = function()
 					break
 				end
 				local args = {
-          [1] = Plr.Character.HumanoidRootPart.CFrame
+          [1] = ore.Reference.CFrame
         }
+        Plr.Character.HumanoidRootPart.CFrame = ore.Reference.CFrame
         game:GetService("ReplicatedStorage").Events.Mine:FireServer(unpack(args))
-				do
-					Plr.Character.HumanoidRootPart.CFrame = ore.Reference.CFrame
-				end
+				Plr.Character.HumanoidRootPart.CFrame = ore.Reference.CFrame
 			end
 		end
 	end
@@ -263,7 +262,7 @@ local x = Library:CreateWindow("The Lost Land v0.9")
 local tab1 = x.Tab({Title = "Main Menu"})
 local tab2 = x.Tab({Title = "Local Player", Icon = "player"})
 local tab3 = x.Tab({Title = "Annoying", Icon = "pvp"})
-local tab4 = x.Tab({Title = "Item Farm", Icon = "item"})
+-- local tab4 = x.Tab({Title = "Item Farm", Icon = "item"})
 local tab5 = x.Tab({Title = "Coin Farm", Icon = "money"})
 
 local uitoggle = true
