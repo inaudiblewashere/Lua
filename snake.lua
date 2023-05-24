@@ -9,14 +9,16 @@ end
 local function Connection(Type, Value)
   if Value then
     for i,v in pairs(Type:GetChildren()) do
-      if v.ClassName ~= "MeshPart" then
-        tp(v:WaitForChild("Part"))
+      if v.ClassName == "Model" then
+        v:WaitForChild("Part")
+        tp(v:FindFirstChild("Part"))
       end
       tp(v)
     end
     connections[Type.Name] = Type.ChildAdded:Connect(function(part)
-      if part.ClassName ~= "MeshPart" then
-        tp(part:WaitForChild("Part"))
+      if part.ClassName == "Model" then
+        part:WaitForChild("Part")
+        tp(part:FindFirstChild("Part"))
       end
       tp(part)
     end)
